@@ -1,5 +1,7 @@
 <script setup>
 import { ShieldCheckIcon, ChatBubbleLeftRightIcon, PhoneIcon } from '@heroicons/vue/24/outline';
+import HeroImage from '../assets/images/main-1.png'; // Direkter Import
+
 </script>
 
 <template>
@@ -44,12 +46,22 @@ import { ShieldCheckIcon, ChatBubbleLeftRightIcon, PhoneIcon } from '@heroicons/
           </div>
         </div>
         <div class="hidden md:block">
-          <!-- Placeholder for hero image -->
-          <div class="bg-white/20 rounded-lg p-8 h-80 flex items-center justify-center">
-            <div class="text-center">
-              <ChatBubbleLeftRightIcon class="h-24 w-24 mx-auto mb-4" />
-              <p class="text-lg font-medium">Intelligente Chatbots für Ihr Unternehmen</p>
+          <!-- Hero image with floating effect -->
+          <div class="bg-white/20 rounded-lg p-8 h-96 flex items-center justify-center relative">
+            <div class="relative animate-float">
+              <!-- Schwebender Schatten -->
+              <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-xl blur-xl opacity-70 group-hover:opacity-100 transition duration-1000"></div>
+              
+              <!-- Glaseffekt-Container -->
+              <div class="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-2 shadow-lg">
+                <img src="../assets/images/main-1.png" alt="Hero Image" class="h-64 w-auto mx-auto rounded-lg" />
+              </div>
+              
+              <!-- Schwebende Partikel -->
+              <div class="absolute top-1/4 -left-4 w-8 h-8 bg-primary/30 rounded-full blur-md animate-float-fast"></div>
+              <div class="absolute bottom-1/3 -right-4 w-6 h-6 bg-secondary/30 rounded-full blur-md animate-float-reverse"></div>
             </div>
+            <p class="absolute bottom-6 text-lg font-medium">Intelligente Chatbots für Ihr Unternehmen</p>
           </div>
         </div>
       </div>

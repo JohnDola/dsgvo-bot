@@ -1,6 +1,7 @@
 <script setup>
 import Header from './components/Header.vue'
 import Features from './components/Features.vue'
+import VoiceFeature from './components/VoiceFeature.vue'
 import Benefits from './components/Benefits.vue'
 import Pricing from './components/Pricing.vue'
 import Trust from './components/Trust.vue'
@@ -13,6 +14,7 @@ import Footer from './components/Footer.vue'
     <Header />
     <main>
       <Features />
+      <VoiceFeature />
       <Benefits />
       <Pricing />
       <Trust />
