@@ -1,12 +1,21 @@
 <script setup>
-import { ShieldCheckIcon, ChatBubbleLeftRightIcon, PhoneIcon } from '@heroicons/vue/24/outline';
+import { ShieldCheckIcon, ChatBubbleLeftRightIcon, PhoneIcon, Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import HeroImage from '../assets/images/main-1.png'; // Direkter Import
 import { onMounted, onUnmounted, ref } from 'vue';
 
 const isScrolled = ref(false);
+const mobileMenuOpen = ref(false);
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50;
+};
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+};
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false;
 };
 
 // Smooth scroll to section when clicking on navigation links
@@ -45,12 +54,32 @@ onUnmounted(() => {
           <ShieldCheckIcon class="h-6 w-6 mr-2" />
           DSGVO-Bot
         </div>
+        
+        <!-- Desktop Navigation -->
         <div class="hidden md:flex space-x-6">
           <a href="#features" @click="scrollToSection($event, 'features')" class="hover:text-secondary transition-colors">Funktionen</a>
           <a href="#benefits" @click="scrollToSection($event, 'benefits')" class="hover:text-secondary transition-colors">Vorteile</a>
           <a href="#pricing" @click="scrollToSection($event, 'pricing')" class="hover:text-secondary transition-colors">Preise</a>
           <a href="#interest-form" @click="scrollToSection($event, 'interest-form')" class="hover:text-secondary transition-colors">Kontakt</a>
         </div>
+        
+        <!-- Mobile Menu Button -->
+        <button @click="toggleMobileMenu" class="md:hidden text-white focus:outline-none">
+          <Bars3Icon v-if="!mobileMenuOpen" class="h-6 w-6" />
+          <XMarkIcon v-else class="h-6 w-6" />
+        </button>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div v-if="mobileMenuOpen" class="md:hidden mt-4 pb-2 space-y-3">
+        <a href="#features" @click="(e) => { scrollToSection(e, 'features'); closeMobileMenu(); }" 
+           class="block py-2 px-4 hover:bg-primary/30 rounded-lg transition-colors">Funktionen</a>
+        <a href="#benefits" @click="(e) => { scrollToSection(e, 'benefits'); closeMobileMenu(); }" 
+           class="block py-2 px-4 hover:bg-primary/30 rounded-lg transition-colors">Vorteile</a>
+        <a href="#pricing" @click="(e) => { scrollToSection(e, 'pricing'); closeMobileMenu(); }" 
+           class="block py-2 px-4 hover:bg-primary/30 rounded-lg transition-colors">Preise</a>
+        <a href="#interest-form" @click="(e) => { scrollToSection(e, 'interest-form'); closeMobileMenu(); }" 
+           class="block py-2 px-4 hover:bg-primary/30 rounded-lg transition-colors">Kontakt</a>
       </div>
     </div>
   </nav>
@@ -61,10 +90,10 @@ onUnmounted(() => {
     <div class="container-custom py-16 md:py-24">
       <div class="grid md:grid-cols-2 gap-8 items-center">
         <div class="text-center md:text-left">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             DSGVO-konforme Chatbots für Ihr Unternehmen
           </h1>
-          <p class="text-xl md:text-2xl mb-8">
+          <p class="text-lg sm:text-xl md:text-2xl mb-8">
             Automatisierte Kundenanfragen per Chat und Telefon - sicher, datenschutzkonform und speziell für KMUs
             entwickelt
           </p>

@@ -17,7 +17,8 @@ const plans = [
         ],
         cta: 'Basic wählen',
         popular: false,
-        icon: CurrencyEuroIcon
+        icon: CurrencyEuroIcon,
+        value: 'basic'
     },
     {
         name: 'Premium',
@@ -35,9 +36,27 @@ const plans = [
         ],
         cta: 'Premium wählen',
         popular: true,
-        icon: SparklesIcon
+        icon: SparklesIcon,
+        value: 'premium'
     }
 ]
+
+// Function to scroll to interest form with selected plan
+const selectPlan = (plan) => {
+    // Add plan parameter to URL
+    const url = new URL(window.location.href);
+    url.searchParams.set('plan', plan);
+    window.history.replaceState({}, '', url);
+    
+    // Scroll to interest form
+    const element = document.getElementById('interest-form');
+    if (element) {
+        window.scrollTo({
+            top: element.offsetTop - 70, // Offset for the navbar height
+            behavior: 'smooth'
+        });
+    }
+}
 </script>
 
 <template>
@@ -52,7 +71,7 @@ const plans = [
 
             <div class="flex flex-col lg:flex-row gap-8 justify-center">
                 <div v-for="(plan, index) in plans" :key="index"
-                    class="w-full lg:w-96 bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 scroll-animate"
+                    class="w-full max-w-md mx-auto lg:w-96 bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 scroll-animate"
                     :data-animation="index === 0 ? 'slide-in-left' : 'slide-in-right'"
                     :class="{ 'border-2 border-secondary': plan.popular }">
                     <div class="p-6 text-center relative"
@@ -77,11 +96,11 @@ const plans = [
                         </ul>
 
                         <div class="text-center">
-                            <a href="#interest-form"
-                                class="block w-full py-2 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center"
+                            <button @click="selectPlan(plan.value)"
+                                class="block w-full py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center"
                                 :class="plan.popular ? 'bg-secondary text-white hover:bg-secondary/90' : 'bg-primary text-white hover:bg-primary/90'">
                                 {{ plan.cta }}
-                            </a>
+                            </button>
                         </div>
                     </div>
 

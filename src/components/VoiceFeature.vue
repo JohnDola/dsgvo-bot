@@ -42,17 +42,31 @@ import { CalendarIcon, ClockIcon, ShieldCheckIcon, DocumentTextIcon } from '@her
               </div>
 
               <!-- Conversation Example with Typing Animation -->
-              <div class="bg-white rounded-lg p-3 mb-3 shadow-sm">
-                <p class="text-gray-700">
-                  <span class="font-bold">Kunde:</span> 
-                  <span class="typing-animation customer-typing">Wann ist mein nächster Servicetermin?</span>
-                </p>
-              </div>
-              <div class="bg-primary/20 rounded-lg p-3 shadow-sm">
-                <p class="text-gray-700">
-                  <span class="font-bold">DSGVO-Bot:</span> 
-                  <span class="typing-animation bot-typing">Ihr nächster Servicetermin ist am 15. Juli um 14:00 Uhr. Möchten Sie diesen Termin bestätigen oder verschieben?</span>
-                </p>
+              <div class="conversation-container">
+                <div class="bg-white rounded-lg p-3 mb-3 shadow-sm">
+                  <p class="text-gray-700">
+                    <span class="font-bold">Kunde:</span> 
+                    <span class="typing-animation customer-typing">Ich brauche einen Servicetermin für nächste Woche.</span>
+                  </p>
+                </div>
+                <div class="bg-primary/20 rounded-lg p-3 mb-3 shadow-sm">
+                  <p class="text-gray-700">
+                    <span class="font-bold">DSGVO-Bot:</span> 
+                    <span class="typing-animation bot-typing-1">Gerne! Ich habe folgende Termine nächste Woche verfügbar: Montag 10:00 Uhr, Dienstag 14:30 Uhr oder Freitag 09:15 Uhr. Welcher Termin passt Ihnen am besten?</span>
+                  </p>
+                </div>
+                <div class="bg-white rounded-lg p-3 mb-3 shadow-sm">
+                  <p class="text-gray-700">
+                    <span class="font-bold">Kunde:</span> 
+                    <span class="typing-animation customer-typing-2">Dienstag 14:30 Uhr wäre gut. Worum ging es nochmal bei unserem letzten Termin?</span>
+                  </p>
+                </div>
+                <div class="bg-primary/20 rounded-lg p-3 shadow-sm">
+                  <p class="text-gray-700">
+                    <span class="font-bold">DSGVO-Bot:</span> 
+                    <span class="typing-animation bot-typing-2">Ich habe Ihren Termin für Dienstag, 14:30 Uhr eingetragen. Bei Ihrem letzten Termin am 03.05. wurde die Wartung Ihrer CRM-Software durchgeführt und die Integration mit Ihrem E-Mail-Marketing-System besprochen.</span>
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -138,12 +152,39 @@ import { CalendarIcon, ClockIcon, ShieldCheckIcon, DocumentTextIcon } from '@her
 </template>
 
 <style scoped>
+/* Conversation Container for better responsiveness */
+.conversation-container {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37, 99, 235, 0.3) transparent;
+}
+
+.conversation-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.conversation-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.conversation-container::-webkit-scrollbar-thumb {
+  background-color: rgba(37, 99, 235, 0.3);
+  border-radius: 3px;
+}
+
 /* Typing Animation */
 .typing-animation {
   display: inline-block;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   border-right: 2px solid transparent;
+}
+
+@media (min-width: 768px) {
+  .typing-animation {
+    white-space: nowrap;
+  }
 }
 
 .customer-typing {
@@ -152,10 +193,22 @@ import { CalendarIcon, ClockIcon, ShieldCheckIcon, DocumentTextIcon } from '@her
   animation-delay: 0.5s;
 }
 
-.bot-typing {
+.bot-typing-1 {
   width: 0;
   animation: typing 3s steps(80, end) forwards, blink-caret 0.75s step-end infinite;
   animation-delay: 3s; /* Start after customer typing is complete */
+}
+
+.customer-typing-2 {
+  width: 0;
+  animation: typing 2.5s steps(50, end) forwards, blink-caret 0.75s step-end infinite;
+  animation-delay: 6.5s; /* Start after bot typing is complete */
+}
+
+.bot-typing-2 {
+  width: 0;
+  animation: typing 4s steps(100, end) forwards, blink-caret 0.75s step-end infinite;
+  animation-delay: 9.5s; /* Start after customer typing 2 is complete */
 }
 
 @keyframes typing {

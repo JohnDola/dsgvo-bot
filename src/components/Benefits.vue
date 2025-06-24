@@ -58,8 +58,8 @@ const benefits = [
 
                 <!-- Right side: Illustration -->
                 <div
-                    class="lg:w-1/2 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-8 flex items-center justify-center scroll-animate" data-animation="slide-in-right">
-                    <div class="relative w-full h-80">
+                    class="lg:w-1/2 w-full bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-8 flex items-center justify-center scroll-animate" data-animation="slide-in-right">
+                    <div class="relative w-full h-[450px]">
                         <!-- Chat interface mockup -->
                         <div class="absolute top-0 left-0 w-3/4 h-full bg-white rounded-lg shadow-lg p-4 flex flex-col">
                             <div class="bg-primary text-white p-3 rounded-t-lg">

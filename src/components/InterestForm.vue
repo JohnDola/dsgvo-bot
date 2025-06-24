@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { EnvelopeIcon, BuildingOfficeIcon, ChatBubbleLeftRightIcon, PhoneIcon, CheckCircleIcon, ExclamationCircleIcon, PaperAirplaneIcon } from '@heroicons/vue/24/outline';
 
 const company = ref('')
@@ -8,6 +8,20 @@ const interest = ref('both')
 const message = ref('')
 const submitted = ref(false)
 const error = ref(false)
+const selectedPlan = ref('')
+
+// Check for URL parameters on mount
+onMounted(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const plan = urlParams.get('plan');
+    if (plan) {
+        selectedPlan.value = plan;
+        // Add the plan to the message if it exists
+        if (plan === 'basic' || plan === 'premium') {
+            message.value = `Ich interessiere mich für den ${plan.charAt(0).toUpperCase() + plan.slice(1)}-Tarif.`;
+        }
+    }
+})
 
 const interestOptions = [
     { value: 'chat', label: 'Chat-Bot', icon: ChatBubbleLeftRightIcon },
@@ -98,13 +112,13 @@ const submitForm = () => {
                                 <ChatBubbleLeftRightIcon class="h-5 w-5 mr-2 text-gray-500" />
                                 Interesse an
                             </label>
-                            <div class="grid grid-cols-3 gap-4 mb-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
                                 <div v-for="option in interestOptions" :key="option.value"
                                     class="border rounded-lg p-3 cursor-pointer transition-colors hover-lift"
                                     :class="interest === option.value ? 'border-primary bg-primary/5' : 'hover:bg-gray-50'"
                                     @click="interest = option.value">
-                                    <div class="flex flex-col items-center text-center">
-                                        <component :is="option.icon" class="h-6 w-6 mb-2"
+                                    <div class="flex sm:flex-col items-center text-center">
+                                        <component :is="option.icon" class="h-6 w-6 sm:mb-2 mr-3 sm:mr-0"
                                             :class="interest === option.value ? 'text-primary' : 'text-gray-500'" />
                                         <span
                                             :class="interest === option.value ? 'font-medium text-primary' : 'text-gray-700'">
@@ -120,6 +134,9 @@ const submitForm = () => {
                                 <ChatBubbleLeftRightIcon class="h-5 w-5 mr-2 text-gray-500" />
                                 Nachricht (optional)
                             </label>
+                            <div v-if="selectedPlan" class="mb-2 p-2 bg-primary/10 rounded-lg text-sm">
+                                <strong>Ausgewählter Tarif:</strong> {{ selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1) }}
+                            </div>
                             <textarea id="message" v-model="message" rows="4"
                                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                                 placeholder="Ihre Fragen oder Anmerkungen"></textarea>
@@ -138,7 +155,7 @@ const submitForm = () => {
 
                         <div class="text-center">
                             <button type="submit"
-                                class="btn-primary w-full sm:w-auto px-8 flex items-center justify-center mx-auto hover-lift hover-glow">
+                                class="btn-primary w-full sm:w-auto px-8 py-3 flex items-center justify-center mx-auto hover-lift hover-glow">
                                 <PaperAirplaneIcon class="h-5 w-5 mr-2" />
                                 Unverbindlich anmelden
                             </button>
