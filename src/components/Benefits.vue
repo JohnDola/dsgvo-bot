@@ -34,7 +34,7 @@ const benefits = [
         <div class="container-custom">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <!-- Left side: Text content -->
-                <div class="lg:w-1/2">
+                <div class="lg:w-1/2 scroll-animate" data-animation="slide-in-left">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Vorteile für Ihr KMU
                     </h2>
@@ -44,7 +44,7 @@ const benefits = [
                     </p>
 
                     <div class="space-y-6">
-                        <div v-for="(benefit, index) in benefits" :key="index" class="flex items-start gap-4">
+                        <div v-for="(benefit, index) in benefits" :key="index" class="flex items-start gap-4 scroll-animate" data-animation="slide-up">
                             <div :class="[benefit.color, 'bg-gray-100 p-3 rounded-full']">
                                 <component :is="benefit.icon" class="h-6 w-6" />
                             </div>
@@ -58,12 +58,12 @@ const benefits = [
 
                 <!-- Right side: Illustration -->
                 <div
-                    class="lg:w-1/2 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-8 flex items-center justify-center">
+                    class="lg:w-1/2 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-8 flex items-center justify-center scroll-animate" data-animation="slide-in-right">
                     <div class="relative w-full h-80">
                         <!-- Chat interface mockup -->
                         <div class="absolute top-0 left-0 w-3/4 h-full bg-white rounded-lg shadow-lg p-4 flex flex-col">
                             <div class="bg-primary text-white p-3 rounded-t-lg">
-                                <h3 class="font-semibold">DSGVO-Chatbot</h3>
+                                <h3 class="font-semibold">DSGVO-Bot</h3>
                             </div>
                             <div class="flex-grow p-4 overflow-y-auto space-y-4">
                                 <div class="bg-primary/10 p-3 rounded-lg max-w-[80%]">

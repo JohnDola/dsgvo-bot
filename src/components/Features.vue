@@ -32,7 +32,7 @@ const features = [
 <template>
   <section id="features" class="section bg-gray-50">
     <div class="container-custom">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 scroll-animate" data-animation="fade-in">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Unsere Funktionen</h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
           Intelligente Chatbots, die Ihre Kundenanfragen automatisiert und datenschutzkonform beantworten
@@ -41,7 +41,8 @@ const features = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div v-for="(feature, index) in features" :key="index"
-          class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4"
+          class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 scroll-animate"
+          :data-animation="index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'"
           :class="[`border-${feature.color.split(' ')[1].split('-')[1]}-${feature.color.split(' ')[1].split('-')[2]}`]">
           <div :class="feature.color" class="p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
             <component :is="feature.icon" class="h-8 w-8" />

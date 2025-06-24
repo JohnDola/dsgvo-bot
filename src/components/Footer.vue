@@ -10,7 +10,7 @@ import { EnvelopeIcon, PhoneIcon, MapPinIcon, ShieldCheckIcon } from '@heroicons
                 <div>
                     <div class="flex items-center mb-4">
                         <ShieldCheckIcon class="h-6 w-6 mr-2 text-secondary" />
-                        <h3 class="text-xl font-bold">DSGVO-Chatbot</h3>
+                        <h3 class="text-xl font-bold">DSGVO-Bot</h3>
                     </div>
                     <p class="text-gray-400 mb-4">
                         Intelligente Chat- und Voicebots für KMUs,
@@ -109,7 +109,14 @@ import { EnvelopeIcon, PhoneIcon, MapPinIcon, ShieldCheckIcon } from '@heroicons
 
             <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 text-sm mb-4 md:mb-0">
-                    &copy; 2025 DSGVO-Chatbot. Alle Rechte vorbehalten.
+                    &copy; 2025 DSGVO-Bot. Alle Rechte vorbehalten. 
+                    <span class="ml-2">
+                        Mit ♥ entwickelt von 
+                        <a href="https://www.jpcodelabs.de" target="_blank" rel="noopener noreferrer" 
+                           class="text-secondary hover:text-white transition-colors">
+                            jpcodelabs gmbh
+                        </a>
+                    </span>
                 </p>
                 <div class="flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Impressum</a>

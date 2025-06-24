@@ -41,12 +41,18 @@ import { CalendarIcon, ClockIcon, ShieldCheckIcon, DocumentTextIcon } from '@her
                 </div>
               </div>
 
-              <!-- Conversation Example -->
+              <!-- Conversation Example with Typing Animation -->
               <div class="bg-white rounded-lg p-3 mb-3 shadow-sm">
-                <p class="text-gray-700"><span class="font-bold">Kunde:</span> "Wann ist mein nächster Servicetermin?"</p>
+                <p class="text-gray-700">
+                  <span class="font-bold">Kunde:</span> 
+                  <span class="typing-animation customer-typing">Wann ist mein nächster Servicetermin?</span>
+                </p>
               </div>
               <div class="bg-primary/20 rounded-lg p-3 shadow-sm">
-                <p class="text-gray-700"><span class="font-bold">Voice-Bot:</span> "Ihr nächster Servicetermin ist am 15. Juli um 14:00 Uhr. Möchten Sie diesen Termin bestätigen oder verschieben?"</p>
+                <p class="text-gray-700">
+                  <span class="font-bold">DSGVO-Bot:</span> 
+                  <span class="typing-animation bot-typing">Ihr nächster Servicetermin ist am 15. Juli um 14:00 Uhr. Möchten Sie diesen Termin bestätigen oder verschieben?</span>
+                </p>
               </div>
             </div>
 
@@ -132,6 +138,36 @@ import { CalendarIcon, ClockIcon, ShieldCheckIcon, DocumentTextIcon } from '@her
 </template>
 
 <style scoped>
+/* Typing Animation */
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid transparent;
+}
+
+.customer-typing {
+  width: 0;
+  animation: typing 2s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+  animation-delay: 0.5s;
+}
+
+.bot-typing {
+  width: 0;
+  animation: typing 3s steps(80, end) forwards, blink-caret 0.75s step-end infinite;
+  animation-delay: 3s; /* Start after customer typing is complete */
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #2563eb }
+}
+
 .voice-wave-container {
   display: flex;
   align-items: center;

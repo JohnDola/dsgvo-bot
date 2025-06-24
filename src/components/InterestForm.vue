@@ -46,14 +46,14 @@ const submitForm = () => {
     <section id="interest-form" class="section bg-gray-50">
         <div class="container-custom">
             <div class="max-w-3xl mx-auto">
-                <div class="text-center mb-12">
+                <div class="text-center mb-12 scroll-animate" data-animation="fade-in">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Interesse anmelden</h2>
                     <p class="text-xl text-gray-600">
                         Melden Sie sich unverbindlich an, um mehr zu erfahren oder eine kostenlose Testphase zu starten
                     </p>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="bg-white rounded-xl shadow-lg p-8 scroll-animate" data-animation="slide-up">
                     <div v-if="submitted"
                         class="bg-secondary/10 border border-secondary text-gray-800 p-4 rounded-lg mb-6 flex items-start">
                         <CheckCircleIcon class="h-6 w-6 text-secondary mr-2 flex-shrink-0 mt-0.5" />
@@ -100,7 +100,7 @@ const submitForm = () => {
                             </label>
                             <div class="grid grid-cols-3 gap-4 mb-4">
                                 <div v-for="option in interestOptions" :key="option.value"
-                                    class="border rounded-lg p-3 cursor-pointer transition-colors"
+                                    class="border rounded-lg p-3 cursor-pointer transition-colors hover-lift"
                                     :class="interest === option.value ? 'border-primary bg-primary/5' : 'hover:bg-gray-50'"
                                     @click="interest = option.value">
                                     <div class="flex flex-col items-center text-center">
@@ -138,7 +138,7 @@ const submitForm = () => {
 
                         <div class="text-center">
                             <button type="submit"
-                                class="btn-primary w-full sm:w-auto px-8 flex items-center justify-center mx-auto">
+                                class="btn-primary w-full sm:w-auto px-8 flex items-center justify-center mx-auto hover-lift hover-glow">
                                 <PaperAirplaneIcon class="h-5 w-5 mr-2" />
                                 Unverbindlich anmelden
                             </button>

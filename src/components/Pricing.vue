@@ -43,7 +43,7 @@ const plans = [
 <template>
     <section id="pricing" class="section bg-gray-50">
         <div class="container-custom">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 scroll-animate" data-animation="fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Unsere Preise</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Transparente Preisgestaltung ohne versteckte Kosten
@@ -52,7 +52,8 @@ const plans = [
 
             <div class="flex flex-col lg:flex-row gap-8 justify-center">
                 <div v-for="(plan, index) in plans" :key="index"
-                    class="w-full lg:w-96 bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105"
+                    class="w-full lg:w-96 bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 scroll-animate"
+                    :data-animation="index === 0 ? 'slide-in-left' : 'slide-in-right'"
                     :class="{ 'border-2 border-secondary': plan.popular }">
                     <div class="p-6 text-center relative"
                         :class="{ 'bg-secondary text-white': plan.popular, 'bg-gray-100': !plan.popular }">
@@ -92,7 +93,7 @@ const plans = [
                 </div>
             </div>
 
-            <div class="mt-12 text-center">
+            <div class="mt-12 text-center scroll-animate" data-animation="slide-up">
                 <p class="text-gray-600 mb-4">Alle Preise zzgl. MwSt. Einmalige Setup-Gebühr: 399 €</p>
                 <p class="text-gray-600 flex items-center justify-center">
                     <SparklesIcon class="h-5 w-5 text-secondary mr-2" />

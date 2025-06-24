@@ -32,7 +32,7 @@ const trustPoints = [
 <template>
     <section id="trust" class="section bg-white">
         <div class="container-custom">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 scroll-animate" data-animation="fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Sicherheit & Vertrauen</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Wir nehmen Ihre Bedenken ernst und haben Lösungen entwickelt
@@ -41,7 +41,8 @@ const trustPoints = [
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div v-for="(point, index) in trustPoints" :key="index"
-                    class="bg-gray-50 p-6 rounded-lg border-l-4 shadow-sm hover:shadow-md transition-shadow"
+                    class="bg-gray-50 p-6 rounded-lg border-l-4 shadow-sm hover:shadow-md transition-shadow scroll-animate"
+                    :data-animation="index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'"
                     :class="`border-${point.color.split(' ')[0].split('-')[1]}-${point.color.split(' ')[0].split('-')[2]}`">
                     <div class="flex items-start gap-4">
                         <div :class="[point.color, 'p-3 rounded-full']">
@@ -55,7 +56,7 @@ const trustPoints = [
                 </div>
             </div>
 
-            <div class="mt-12 p-6 bg-primary/5 rounded-lg border border-primary/20 shadow-sm">
+            <div class="mt-12 p-6 bg-primary/5 rounded-lg border border-primary/20 shadow-sm scroll-animate" data-animation="fade-in">
                 <div class="flex flex-col md:flex-row items-center gap-6">
                     <div class="md:w-2/3">
                         <h3 class="text-2xl font-bold text-gray-900 mb-3">Entwickelt und gehostet in der EU</h3>
@@ -73,7 +74,7 @@ const trustPoints = [
             </div>
 
             <!-- Trust badges -->
-            <div class="mt-12 flex flex-wrap justify-center gap-8">
+            <div class="mt-12 flex flex-wrap justify-center gap-8 scroll-animate" data-animation="slide-up">
                 <div class="bg-gray-50 p-4 rounded-lg shadow-sm flex items-center justify-center">
                     <div class="text-center">
                         <ShieldCheckIcon class="h-10 w-10 text-primary mx-auto mb-2" />

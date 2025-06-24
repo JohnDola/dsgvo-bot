@@ -1,26 +1,61 @@
 <script setup>
 import { ShieldCheckIcon, ChatBubbleLeftRightIcon, PhoneIcon } from '@heroicons/vue/24/outline';
 import HeroImage from '../assets/images/main-1.png'; // Direkter Import
+import { onMounted, onUnmounted, ref } from 'vue';
 
+const isScrolled = ref(false);
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50;
+};
+
+// Smooth scroll to section when clicking on navigation links
+const scrollToSection = (event, sectionId) => {
+  event.preventDefault();
+  const element = document.getElementById(sectionId);
+  if (element) {
+    window.scrollTo({
+      top: element.offsetTop - 70, // Offset for the navbar height
+      behavior: 'smooth'
+    });
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  // Initial check for scroll position
+  handleScroll();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
-  <header class="bg-gradient-to-r from-primary to-primary/80 text-white">
-    <!-- Navigation -->
-    <nav class="container-custom py-4">
+  <!-- Navigation - moved outside header -->
+  <nav class="sticky top-0 z-50 transition-all duration-300" 
+       :class="[
+         'bg-gradient-to-r from-primary to-primary/80 text-white',
+         isScrolled ? 'py-2 shadow-lg' : 'py-4'
+       ]">
+    <div class="container-custom">
       <div class="flex justify-between items-center">
         <div class="text-xl font-bold flex items-center">
           <ShieldCheckIcon class="h-6 w-6 mr-2" />
-          DSGVO-Chatbot
+          DSGVO-Bot
         </div>
         <div class="hidden md:flex space-x-6">
-          <a href="#features" class="hover:text-secondary transition-colors">Funktionen</a>
-          <a href="#benefits" class="hover:text-secondary transition-colors">Vorteile</a>
-          <a href="#pricing" class="hover:text-secondary transition-colors">Preise</a>
-          <a href="#contact" class="hover:text-secondary transition-colors">Kontakt</a>
+          <a href="#features" @click="scrollToSection($event, 'features')" class="hover:text-secondary transition-colors">Funktionen</a>
+          <a href="#benefits" @click="scrollToSection($event, 'benefits')" class="hover:text-secondary transition-colors">Vorteile</a>
+          <a href="#pricing" @click="scrollToSection($event, 'pricing')" class="hover:text-secondary transition-colors">Preise</a>
+          <a href="#interest-form" @click="scrollToSection($event, 'interest-form')" class="hover:text-secondary transition-colors">Kontakt</a>
         </div>
       </div>
-    </nav>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-r from-primary to-primary/80 text-white">
 
     <!-- Hero Section -->
     <div class="container-custom py-16 md:py-24">
@@ -34,11 +69,11 @@ import HeroImage from '../assets/images/main-1.png'; // Direkter Import
             entwickelt
           </p>
           <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-            <a href="#interest-form" class="btn-secondary flex items-center justify-center">
+            <a href="#interest-form" @click="scrollToSection($event, 'interest-form')" class="btn-secondary flex items-center justify-center">
               <ChatBubbleLeftRightIcon class="h-5 w-5 mr-2" />
               Interesse anmelden
             </a>
-            <a href="#pricing"
+            <a href="#pricing" @click="scrollToSection($event, 'pricing')"
               class="bg-white text-primary font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center">
               <PhoneIcon class="h-5 w-5 mr-2" />
               Preise ansehen
