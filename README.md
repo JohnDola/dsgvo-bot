@@ -10,21 +10,21 @@ DSGVO-Bot bietet intelligente Chat- und Voicebots, die speziell für KMUs entwic
 
 ### Hauptfunktionen
 
-- __DSGVO-konforme Datenverarbeitung__: Vollständig datenschutzkonform mit Hosting in der EU oder lokal beim Kunden
-- __24/7 Telefon-Support__: Automatisierte Kundenbetreuung rund um die Uhr
-- __Chat & Voice Integration__: Kombinierte Lösung für Text- und Sprachkommunikation
-- __Sichere Datenzugriffe__: Geschützte Nutzung interner Unternehmensdaten (FAQs, Produktdaten, Dokumentationen)
-- __Einfache Integration__: Schnelle Implementierung ohne umfangreiche IT-Kenntnisse
+- **DSGVO-konforme Datenverarbeitung**: Vollständig datenschutzkonform mit Hosting in der EU oder lokal beim Kunden
+- **24/7 Telefon-Support**: Automatisierte Kundenbetreuung rund um die Uhr
+- **Chat & Voice Integration**: Kombinierte Lösung für Text- und Sprachkommunikation
+- **Sichere Datenzugriffe**: Geschützte Nutzung interner Unternehmensdaten (FAQs, Produktdaten, Dokumentationen)
+- **Einfache Integration**: Schnelle Implementierung ohne umfangreiche IT-Kenntnisse
 
 ## Technische Details
 
 Diese Landing Page wurde mit modernen Web-Technologien entwickelt:
 
-- __Vue.js 3__: Frontend-Framework mit Composition API
-- __Vite__: Schnelles Build-Tool und Entwicklungsserver
-- __Tailwind CSS__: Utility-First CSS-Framework für responsives Design
-- __Responsive Design__: Optimiert für alle Geräte von Mobiltelefonen bis Desktop-PCs
-- __Animationen__: Sanfte Scroll- und UI-Animationen für ein ansprechendes Nutzererlebnis
+- **Vue.js 3**: Frontend-Framework mit Composition API
+- **Vite**: Schnelles Build-Tool und Entwicklungsserver
+- **Tailwind CSS**: Utility-First CSS-Framework für responsives Design
+- **Responsive Design**: Optimiert für alle Geräte von Mobiltelefonen bis Desktop-PCs
+- **Animationen**: Sanfte Scroll- und UI-Animationen für ein ansprechendes Nutzererlebnis
 
 ## Entwicklung
 
@@ -49,6 +49,44 @@ npm run build
 ## Deployment
 
 Die Website wird über GitHub Pages bereitgestellt und ist unter [dsgvobot.de](https://dsgvobot.de) erreichbar.
+
+### Deployment-Konfiguration
+
+Dieses Projekt verwendet GitHub Actions für automatisches Deployment:
+
+1. **Workflow-Datei**: `.github/workflows/deploy.yml` definiert den Deployment-Prozess
+2. **Deployment-Prozess**:
+   - Code wird aus dem privaten Repository gebaut
+   - Build-Dateien werden in das öffentliche Repository gepusht
+   - GitHub Pages stellt die Website bereit
+
+### GitHub Pages Einrichtung
+
+Nach dem ersten erfolgreichen Deployment:
+
+1. Gehen Sie zu den Repository-Einstellungen auf GitHub
+2. Scrollen Sie zum Abschnitt "GitHub Pages"
+3. Wählen Sie den Branch `gh-pages` als Quelle
+4. Geben Sie die benutzerdefinierte Domain `dsgvobot.de` ein
+5. Aktivieren Sie "Enforce HTTPS" (sobald die DNS-Konfiguration abgeschlossen ist)
+
+### DNS-Konfiguration
+
+Für die Domain `dsgvobot.de` bei Strato:
+
+1. **A-Records** für `dsgvobot.de` zu den GitHub Pages IP-Adressen:
+   - 185.199.108.153
+   - 185.199.109.153
+   - 185.199.110.153
+   - 185.199.111.153
+2. **CNAME-Record** für `www.dsgvobot.de` zu `johndola.github.io`
+
+## Sicherheitshinweis
+
+Für das Deployment zwischen Repositories wird ein Personal Access Token (PAT) benötigt:
+
+1. Erstellen Sie ein PAT auf GitHub mit `repo`-Berechtigungen
+2. Fügen Sie es als Repository Secret mit dem Namen `DEPLOY_TOKEN` hinzu
 
 ## Lizenz
 
